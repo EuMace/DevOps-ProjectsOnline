@@ -13,7 +13,8 @@ WEB STACK IMPLEMENTATION (LAMP STACK) IN AWS
 5.	Completed all configurations for setting up instance (Enabled public IP, security group, and key pair) and it is launched
 
 
- 
+ ![image](https://user-images.githubusercontent.com/120044190/217145758-b5abfa94-f2ab-42ad-9007-9c6429829dd7.png)
+
 
 
 6.	SSH into instance with Windows Terminal
@@ -21,6 +22,7 @@ WEB STACK IMPLEMENTATION (LAMP STACK) IN AWS
 8.	I was able to connect to my instance 
 
  
+![image](https://user-images.githubusercontent.com/120044190/217145861-9d9f1eed-be0a-4c82-bdb4-f14c7faeb3d6.png)
 
 
 
@@ -29,13 +31,15 @@ STEP 1 — INSTALLING APACHE AND UPDATING THE FIREWALL
 2.	Run sudo apt update to update a list of packages in package manager
 
 
+![image](https://user-images.githubusercontent.com/120044190/217145945-a628b4b7-72dc-405d-98d5-aa8621a9f1a6.png)
 
  
 
 3.	#run apache2 package installation using sudo apt install apache2
 4.	Verify that apache2 is running as a Service in our OS use command: sudo systemctl status apache2
 
- 
+ ![image](https://user-images.githubusercontent.com/120044190/217146008-e988848d-2088-47d5-955d-6af86a61a499.png)
+
 
 5.	Green light will indicate Apache2 is running
 6.	Open TCP port 80 using command curl http://localhost:80
@@ -47,7 +51,8 @@ curl http://127.0.0.1:80
 
 ( You can also retrieve your public IP address by using this command: curl -s http://169.254.169.254/latest/meta-data/public-ipv4
 
- 
+ ![image](https://user-images.githubusercontent.com/120044190/217146088-10ca001a-33e4-4bd5-bc95-9ec8a2d8f70c.png)
+
 
 STEP 2 — INSTALLING MYSQL
 We need to install a Database Management System (DBMS) to be able to store and manage data for your site in a relational database.
@@ -56,14 +61,22 @@ We need to install a Database Management System (DBMS) to be able to store and m
 2.	Confirm installation with y
 3.	When installation is finished, log in to the MySql console with command: $ sudo mysql
  
+ ![image](https://user-images.githubusercontent.com/120044190/217146203-2f9e5b91-6ca0-4845-868e-486ac70ced34.png)
+
 
 4.	Run security script that comes pre-installed with MySql: ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';
 5.	Then exit MySQL shell with: mysql> exit
 6.	Start the interactive script with command $ sudo mysql_secure_installation and continue with instructions changed password to 
  
+ ![image](https://user-images.githubusercontent.com/120044190/217146265-e9c39cfb-ef66-4551-b571-85a09307da40.png)
+
 
 7.	After finishing, test if able to log in to the MySQL console with command : sudo mysql -p
 8.	MySQL server now installed
+
+![image](https://user-images.githubusercontent.com/120044190/217146421-d71f724c-345e-423e-87e6-5e1334331684.png)
+
+
  
 9.	To exit use command:  exit
 
@@ -75,7 +88,8 @@ STEP 3 — INSTALLING PHP
 2.	Once the installation is finished, you can run the following command to confirm your PHP version: php -v 
 
 
- 
+ ![image](https://user-images.githubusercontent.com/120044190/217146478-5652038d-441f-4a0f-802c-61ea9c3e25c5.png)
+
 
  
 
@@ -103,6 +117,8 @@ STEP 4 — CREATING A VIRTUAL HOST FOR YOUR WEBSITE USING APACHE
 		sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html
 12.	Now go to your browser and try to open your website URL using IP address:
 
+![image](https://user-images.githubusercontent.com/120044190/217146575-026ed172-7445-4ee4-b2fe-768a19e530f4.png)
+
  
 13.	 If you see the text from ‘echo’ command you wrote to index.html file, then it means your Apache virtual host is working as expected.
 In the output you will see your server’s public hostname (DNS name) and public IP address. You can also access your website in your browser by public DNS name, not only by IP – try it out, the result must be the same (port is optional)
@@ -123,12 +139,14 @@ STEP 5 — ENABLE PHP ON THE WEBSITE
 3.	After saving and closing the file, you will need to reload Apache so the changes take effect: sudo systemctl reload apache2
 4.	This will open a blank file. Add the following text, which is valid PHP code, inside the file:
 
+![image](https://user-images.githubusercontent.com/120044190/217146629-138479d6-72f6-4040-abc2-cf13c7edfbf3.png)
 
  
 
 5.	When I finished, I saved and closed the file, refreshed and saw this final image:
 
- 
+ ![image](https://user-images.githubusercontent.com/120044190/217146733-e3ab135b-7531-4f60-b35a-7299a3027770.png)
+
 
 
 This page provides information about your server from the perspective of PHP. It is useful for debugging and to ensure that your settings are being applied correctly.
