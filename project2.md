@@ -1,4 +1,4 @@
-WEB STACK IMPLEMENTATION (LEMP STACK)
+## WEB STACK IMPLEMENTATION (LEMP STACK)
 
 1.	Created new EC2 instance on AWS
 2.	Launched instance.
