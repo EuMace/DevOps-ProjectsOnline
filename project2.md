@@ -211,23 +211,8 @@ INSERT INTO college_database.todo_list (content) VALUES ("My third important ite
 
 Copy this content into your todo_list.php script:
 
-<?php
-$user = "eunice_user";
-$password = "password";
-$database = "college_database";
-$table = "todo_list";
+![image](https://user-images.githubusercontent.com/120044190/217152903-d74cad5e-a1ca-4157-8dbd-c026aeb258d6.png)
 
-try {
-  $db = new PDO("mysql:host=localhost;dbname=$database",$user, $password);
-  echo "<h2>TODO</h2><ol>";
-  foreach($db->query("SELECT content FROM $table") as $row) {
-    echo "<li>" . $row['content'] . "</li>";
-  }
-  echo "</ol>";
-} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
-            }
 
 ![image](https://user-images.githubusercontent.com/120044190/217151648-62caa41e-99f4-4c59-a84f-8095a66d8708.png)
 
