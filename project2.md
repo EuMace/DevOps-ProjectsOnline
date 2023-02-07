@@ -126,8 +126,9 @@ LEMP stack is completely set up
 	
 	sudo vi /var/www/projectLEMP/info.php
 2.	Type or paste the following lines into the new file. This is valid PHP code that will return information about your server:
-<?php
-phpinfo();
+
+	![image](https://user-images.githubusercontent.com/120044190/217152361-413ff469-fad8-4840-9117-fde2b72a97c1.png)
+
 
 3.	Now access this page in your web browser by visiting the domain name or public IP address you’ve set up in your Nginx configuration file, followed by /info.php:
 	
@@ -153,10 +154,10 @@ In this step I will create a test database (DB) with simple "To do list" and con
 2.	Created a new database, ran the following command from  MySQL console: mysql> CREATE DATABASE ‘college_database’ ;
 3.	Created new user and granted full privileges on the database
 
-		The following command creates a new user named example_user
-, using mysql_native_password as default authentication method. We’re defining this user’s password as password, but you should replace this value with a secure password of your own choosing.
+The following command creates a new user named example_user, using mysql_native_password as default authentication method. We’re defining this user’s password as password, but you should replace this value with a secure password of your own choosing.
 
 mysql> CREATE USER 'eunice_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+	
 4.	Now give this user permission over the college_database database
 
 mysql> GRANT ALL ON college_database.* TO 'eunice_user'@'%';  This will give the example_user user full privileges over the example_database database, while preventing this user from creating or modifying other databases on your server.
@@ -165,7 +166,7 @@ mysql> GRANT ALL ON college_database.* TO 'eunice_user'@'%';  This will give the
 
 
 
-5.	 Exit the MySQL shell: mysql> exit 
+5.	Exit the MySQL shell: mysql> exit 
 6.	Tested if new user has proper permissions by logging in to MySQL console again, using the custom user credentials:  mysql -u eunice_user -p
 
 The -p flag in this command, will prompt you for the password used when creating the eunice_user user.
