@@ -4,7 +4,8 @@ WEB STACK IMPLEMENTATION (LAMP STACK) IN AWS
 3.	Launched an EC2 instance
 
 
- ![EC2 Launch](./images/EC2Launch.JPG)
+ ![image](https://user-images.githubusercontent.com/120044190/217145528-ea2c6f8a-8449-4fa4-8ca5-8336b22ea2f0.png)
+
 
 
 
