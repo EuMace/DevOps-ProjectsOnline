@@ -1,4 +1,4 @@
-WEB STACK IMPLEMENTATION (LAMP STACK) IN AWS
+## WEB STACK IMPLEMENTATION (LAMP STACK) IN AWS
 1.	Create AWS Account
 2.	Login as Root User
 3.	Launched an EC2 instance
