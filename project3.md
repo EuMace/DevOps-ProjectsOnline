@@ -269,7 +269,7 @@ Your app should open and start running on Localhost:3000
 
 To access the application from the Internet you have to open TCP port 3000 on EC2 by adding a new Security Group rule.
 	
-	![image](https://user-images.githubusercontent.com/120044190/217990270-a071540c-870c-4822-9e99-a6612c293f1e.png) 
+![image](https://user-images.githubusercontent.com/120044190/217995316-8e897101-8683-4b31-9a61-0244c96b295d.png)
 
  
 ## Creating your React Components
