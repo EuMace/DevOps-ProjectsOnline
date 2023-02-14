@@ -1,9 +1,9 @@
-##  MEAN STACK Deployment to Ubuntu in AWS
+# MEAN STACK Deployment to Ubuntu in AWS
 
 
 In this project I implemented a simple Book Register web form using MEAN stack with a new EC2 Instance of t2.nano family with an Ubuntu server 20.04 LTS (HVM) image.
 
-# Step 1: Install NodeJs
+## Step 1: Install NodeJs
 
 1.	Update ubuntu---  `sudo apt update`
 2.	Upgrade ubuntu---`sudo apt upgrade`
@@ -27,7 +27,7 @@ In this project I implemented a simple Book Register web form using MEAN stack w
 6.	Verify node installation for npm using : `npm -v`
 
 
-# Step 2: Install MongoDB
+## Step 2: Install MongoDB
 
 1.	Add MongoDB key server using : `sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6`
 2.	The add repository: `echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-    3.4.list`
@@ -57,7 +57,7 @@ In this project I implemented a simple Book Register web form using MEAN stack w
 
 # INSTALL EXPRESS AND SET UP ROUTES TO THE SERVER
 
-Step 3: Install Express and set up routes to the server
+## Step 3: Install Express and set up routes to the server
 
 1. -- Express will used to pass book information to and from our MongoDB database.
 -- Mongoose will be used to establish a schema for the database to store data of our book register
@@ -138,7 +138,7 @@ module.exports = mongoose.model('Book', bookSchema);
 
  
 
-# Step 4 – Access the routes with AngularJS
+## Step 4 – Access the routes with AngularJS
 
 AngularJS provides a web framework for creating dynamic views in your web applications. In this tutorial, we use AngularJS to connect our web page with Express and perform actions on our book register.
 
