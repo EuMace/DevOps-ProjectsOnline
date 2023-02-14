@@ -1,9 +1,10 @@
 ##  MEAN STACK Deployment to Ubuntu in AWS
 
-# MEAN STACK Deployment to Ubuntu in AWS
 
-In this project I implemented a simple Book Register web form using MEAN stack.
-Step 1: Install NodeJs
+In this project I implemented a simple Book Register web form using MEAN stack with a new EC2 Instance of t2.nano family with an Ubuntu server 20.04 LTS (HVM) image.
+
+# Step 1: Install NodeJs
+
 1.	Update ubuntu---  `sudo apt update`
 2.	Upgrade ubuntu---`sudo apt upgrade`
 3.	Add certificates--- `sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates` 
