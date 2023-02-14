@@ -101,6 +101,7 @@ AngularJS provides a web framework for creating dynamic views in your web applic
 5.	Also in public folder, create a file named index.html --- `vi index.html`
 6.	Copy and paste following code below into index.html file:
 
+```
 <!doctype html>
 <html ng-app="myApp" ng-controller="myCtrl">
   <head>
@@ -151,6 +152,7 @@ AngularJS provides a web framework for creating dynamic views in your web applic
     </div>
   </body>
 </html>
+```
   
 ![image](https://user-images.githubusercontent.com/120044190/218845904-5572742f-5083-4f78-ae42-714844fa40d1.png)
 
