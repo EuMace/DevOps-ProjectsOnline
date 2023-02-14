@@ -70,7 +70,45 @@ Step 3: Install Express and set up routes to the server
 3. Then create a file names routes.js---- `vi routes.js`
 4. Copy and paste the following code below into routes.js
 
-
+```
+var Book = require('./models/book');
+module.exports = function(app) {
+  app.get('/book', function(req, res) {
+    Book.find({}, function(err, result) {
+      if ( err ) throw err;
+      res.json(result);
+    });
+  }); 
+  app.post('/book', function(req, res) {
+    var book = new Book( {
+      name:req.body.name,
+      isbn:req.body.isbn,
+      author:req.body.author,
+      pages:req.body.pages
+    });
+    book.save(function(err, result) {
+      if ( err ) throw err;
+      res.json( {
+        message:"Successfully added book",
+        book:result
+      });
+    });
+  });
+  app.delete("/book/:isbn", function(req, res) {
+    Book.findOneAndRemove(req.query, function(err, result) {
+      if ( err ) throw err;
+      res.json( {
+        message: "Successfully deleted the book",
+        book: result
+      });
+    });
+  });
+  var path = require('path');
+  app.get('*', function(req, res) {
+    res.sendfile(path.join(__dirname + '/public', 'index.html'));
+  });
+};
+```
 
 ![image](https://user-images.githubusercontent.com/120044190/218839730-4c61b5b7-bdd2-4869-aea3-3ce91ed5d45e.png)
 
@@ -79,6 +117,21 @@ Step 3: Install Express and set up routes to the server
 9.	Create a file named book.js in folder models--- `vi book.js`
 10.	Copy and paste the following code into book.js
 
+```
+var mongoose = require('mongoose');
+var dbHost = 'mongodb://localhost:27017/test';
+mongoose.connect(dbHost);
+mongoose.connection;
+mongoose.set('debug', true);
+var bookSchema = mongoose.Schema( {
+  name: String,
+  isbn: {type: String, index: true},
+  author: String,
+  pages: Number
+});
+var Book = mongoose.model('Book', bookSchema);
+module.exports = mongoose.model('Book', bookSchema);
+```
 
 ![image](https://user-images.githubusercontent.com/120044190/218840624-f3d5a3f6-3eae-4eec-aac3-bc5c3906fe05.png)
 
@@ -93,7 +146,45 @@ AngularJS provides a web framework for creating dynamic views in your web applic
 3.	Then add a file named script.js --- `vi script.js`
 4.	Add the following code to the file:
  
-
+ ```
+ var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+  $http( {
+    method: 'GET',
+    url: '/book'
+  }).then(function successCallback(response) {
+    $scope.books = response.data;
+  }, function errorCallback(response) {
+    console.log('Error: ' + response);
+  });
+  $scope.del_book = function(book) {
+    $http( {
+      method: 'DELETE',
+      url: '/book/:isbn',
+      params: {'isbn': book.isbn}
+    }).then(function successCallback(response) {
+      console.log(response);
+    }, function errorCallback(response) {
+      console.log('Error: ' + response);
+    });
+  };
+  $scope.add_book = function() {
+    var body = '{ "name": "' + $scope.Name + 
+    '", "isbn": "' + $scope.Isbn +
+    '", "author": "' + $scope.Author + 
+    '", "pages": "' + $scope.Pages + '" }';
+    $http({
+      method: 'POST',
+      url: '/book',
+      data: body
+    }).then(function successCallback(response) {
+      console.log(response);
+    }, function errorCallback(response) {
+      console.log('Error: ' + response);
+    });
+  };
+});
+```
 
 ![image](https://user-images.githubusercontent.com/120044190/218841272-ef512d57-07e5-46a6-b243-688fe6b4e7a9.png)
 
