@@ -173,12 +173,15 @@ Repeat the same steps as for the Web Server, but instead of apps-lv create db-lv
 
 
 ## Step 3 - Install Wordpress on Web Server EC2
+
 1.	Update the repository `sudo yum -y update`
+
 2.	Install wget, Apache and its dependencies
-3.	
-        `Sudo yum -y install wget heetpd php php-mysqlnd php-fpm php-json`
+	
+        `Sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json`
 	
 3.	Start Apache
+
 	`sudo systemctl enable httpd`
 	
         `sudo systemctl start httpd`
