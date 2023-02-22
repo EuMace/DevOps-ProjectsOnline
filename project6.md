@@ -48,8 +48,11 @@ In this project I was tasked to prepare storage infrastructure on two Linux serv
 
 
 9.	Use pvcreate utility to mark each of 3 disks as physical volumes (PVs) to be used by LVM
-        `sudo pvcreate /dev/xvdf1`
+       
+       `sudo pvcreate /dev/xvdf1`
+       
         `sudo pvcreate /dev/xvdg1`
+	
         `sudo pvcreate /dev/xvdh1`
 
  
