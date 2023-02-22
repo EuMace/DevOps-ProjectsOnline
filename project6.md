@@ -87,20 +87,24 @@ In this project I was tasked to prepare storage infrastructure on two Linux serv
 15.	Verify the entire setup using command:
 
    `sudo vgdisplay -v #view complete setup - VG, PV, and LV`
+   
    `sudo lsblk`
 
 16.	Use mkfs.ext4 to format the logical volumes with ext4 filesystem.
 
     `sudo mkfs -t ext4 /dev/webdata-vg/apps-lv`
+    
     `sudo mkfs -t ext4 /dev/webdata-vg/logs-lv`
 
 ![image](https://user-images.githubusercontent.com/120044190/220684583-754feeec-0576-446e-be03-50016acc6342.png)
 
  
 17.	Create /var/www/html directory to store website files
+	
        `sudo mkdir -p /var/www/html`
 
 18.	Create /home/recovery/logs to store backup of log data
+	
       `sudo mkdir -p /home/recovery/logs`
 
 19.	Mount /var/www/html on apps-lv logical volume
@@ -132,6 +136,7 @@ important)
 UPDATE THE `/ETC/FSTAB` FILE
 
 The UUID of the device will be used to update the /etc/fstab file;
+
      `sudo blkid`
      
      `sudo vi /etc/fstab`
@@ -142,17 +147,20 @@ Update /etc/fstab in this format using your own UUID and remember to remove the 
 
 
 1.	Test the configuration and reload the daemon
-2.	 `sudo mount -a`
-3.	 
+
+	 `sudo mount -a`
+	 
          `sudo systemctl daemon-reload`
 	 
-3.	Verify your setup by running `df -h`, output must look like this:
+2.	Verify your setup by running `df -h`, output must look like this:
 
  ![image](https://user-images.githubusercontent.com/120044190/220685569-3f1c05b7-7aa0-4624-9ee1-eaec9619b2f7.png)
 
 
 ## Step 2 - Prepare the Database server
+
 Launch a second RedHat EC2 instance that will have a role – ‘DB Server’
+
 Repeat the same steps as for the Web Server, but instead of apps-lv create db-lv and mount it to /db directory instead of /var/www/html/.
  
 ![image](https://user-images.githubusercontent.com/120044190/220685660-e9b3b701-7ef3-4d25-b1ab-9694061a31df.png)
