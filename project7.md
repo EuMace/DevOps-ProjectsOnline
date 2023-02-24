@@ -184,7 +184,8 @@ Create a database user and name it webaccess and grant permission to webaccess u
 	grant all privileges on tooling.* to 'webaccess'@'172.31.48.0/20';
 	flush privileges;
  
- ![image](https://user-images.githubusercontent.com/120044190/221268896-e0064443-72c6-4f02-829a-52c941313147.png)
+![image](https://user-images.githubusercontent.com/120044190/221268896-e0064443-72c6-4f02-829a-52c941313147.png)
+	
 
 ![image](https://user-images.githubusercontent.com/120044190/221268919-745b95c8-a9b8-4770-a8b3-bfadfdcc1cd8.png)
 
@@ -194,6 +195,7 @@ Create a database user and name it webaccess and grant permission to webaccess u
 1. Launch a new EC2 instance with RHEL 8 Operating System—I used RHEL 9
 
 2. Install NFS client on the webserver1: `sudo yum install nfs-utils nfs4-acl-tools -y`
+	
 	
 ![image](https://user-images.githubusercontent.com/120044190/221269102-0710c623-a7b0-455f-a5ad-86e3747b28ac.png)
 
@@ -221,6 +223,7 @@ add following line:
 `sudo dnf upgrade --refresh -y`
 
 `sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms`
+	
 `sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm`
 	
 `sudo dnf update`
@@ -260,14 +263,14 @@ CONTINUE with rest of install
 	
 `sudo setsebool -P httpd_execmem 1`
 
-	![image](https://user-images.githubusercontent.com/120044190/221270277-d1630ff2-ee32-4de6-b4c8-7f68220244d6.png)
+![image](https://user-images.githubusercontent.com/120044190/221270277-d1630ff2-ee32-4de6-b4c8-7f68220244d6.png)
 
  
-6.	Verify that Apache files and directories are available on the Web Server in /var/www and also on the NFS server in /mnt/apps. If you see the same files – it means NFS is mounted correctly. You can try to create a new file touch test.txt from one server and check if the same file is accessible from other Web Servers.  
+6. Verify that Apache files and directories are available on the Web Server in /var/www and also on the NFS server in /mnt/apps. If you see the same files – it means NFS is mounted correctly. You can try to create a new file touch test.txt from one server and check if the same file is accessible from other Web Servers.  
 
 `lls /mnt/apps` on NFS and `ls /var/www` on webservers
 
-7.	Locate the log folder for Apache on the Web Server and mount it to NFS server’s export for logs. Repeat step №3 and №4 to make sure the mount point will persist after reboot:
+7. Locate the log folder for Apache on the Web Server and mount it to NFS server’s export for logs. Repeat step №3 and №4 to make sure the mount point will persist after reboot:
 
 `sudo mkdir /var/www`
 
@@ -284,7 +287,7 @@ CONTINUE with rest of install
 
 
 
-8.	Fork the tooling source code from Darey.io Github Account to your Github account. 
+8. Fork the tooling source code from Darey.io Github Account to your Github account. 
 	
 	 `sudo yum install git -y`
 	
@@ -295,7 +298,7 @@ CONTINUE with rest of install
 	![image](https://user-images.githubusercontent.com/120044190/221270451-b5731dd5-c603-4991-9a6d-531155f3e402.png)
 
  
-9.	Deploy the tooling website’s code to the Webserver. Ensure that the html folder from the repository is deployed to /var/www/html
+9. Deploy the tooling website’s code to the Webserver. Ensure that the html folder from the repository is deployed to /var/www/html
 	
 	`cd tooling`
 	
@@ -316,15 +319,17 @@ To make this change permanent – open following config file `sudo vi /etc/sysco
 Check to see it Apache running: `sudo systemctl status httpd`----if inactive `cd ..` and `sudo setenforce 0`
 	
 THEN go to sudo vi /etc/sysconfig/selinux and set SELINUX=disabled then restart httpd---sudo systemctl start httpd
+	
 
 ![image](https://user-images.githubusercontent.com/120044190/221270673-bf060e09-93f1-48e8-a2a7-38ed03530dec.png)
 
  
-10.	Update the website’s configuration to connect to the database: `sudo vi /var/www/html/functions.php`
+10. Update the website’s configuration to connect to the database: `sudo vi /var/www/html/functions.php`
 
 ENTER $db = mysqli_connect('172.31.14.247', 'webaccess', 'password', 'tooling');
 	
-	![image](https://user-images.githubusercontent.com/120044190/221270738-471a54dd-60e0-48e0-ad1b-285575eb9a11.png)
+	
+![image](https://user-images.githubusercontent.com/120044190/221270738-471a54dd-60e0-48e0-ad1b-285575eb9a11.png)
 
  
 Apply tooling-db.sql script to your database using this command:
@@ -350,24 +355,29 @@ Go to database server and the bind address to 0.0.0.0 by entering:
 	select * from users;
 
 To backup welcome page on Apache:  `sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.backup` THEN `sudo systemctl restart httpd`
+	
  
 	![image](https://user-images.githubusercontent.com/120044190/221270925-8ecddfd5-42f9-4df4-adfe-a1b905058606.png)
+	
+	
 
 	![image](https://user-images.githubusercontent.com/120044190/221270952-fae1df85-49d8-4007-81a9-3ce5abb0dd28.png)
 
  
-12.	Create in MySQL a new admin user with username: myuser and password: password:
+12. Create in MySQL a new admin user with username: myuser and password: password:
 	
 	INSERT INTO users(id, username, password, email, user_type, status)
 	--> VALUES ("5", "myuser", "21232f297a57a5a743894a0e4a801fc3", "eunicedeola@gmail.com", "admin", "5");
 
 LOGIN with myuser and password is admin
 
-	![image](https://user-images.githubusercontent.com/120044190/221271057-71a11d21-23aa-4fa5-a8d6-68e5330b2887.png)
+![image](https://user-images.githubusercontent.com/120044190/221271057-71a11d21-23aa-4fa5-a8d6-68e5330b2887.png)
+	
 
-	![image](https://user-images.githubusercontent.com/120044190/221271092-1515de4a-06a5-4d7d-98e3-ee8865ecf537.png)
+![image](https://user-images.githubusercontent.com/120044190/221271092-1515de4a-06a5-4d7d-98e3-ee8865ecf537.png)
+	
 
-	![image](https://user-images.githubusercontent.com/120044190/221271111-cdf84306-aaa5-488b-a3d4-385c00804578.png)
+![image](https://user-images.githubusercontent.com/120044190/221271111-cdf84306-aaa5-488b-a3d4-385c00804578.png)
 
  
 
