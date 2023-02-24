@@ -360,11 +360,11 @@ Go to database server and the bind address to 0.0.0.0 by entering:
 To backup welcome page on Apache:  `sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.backup` THEN `sudo systemctl restart httpd`
 	
  
-	![image](https://user-images.githubusercontent.com/120044190/221270925-8ecddfd5-42f9-4df4-adfe-a1b905058606.png)
+![image](https://user-images.githubusercontent.com/120044190/221270925-8ecddfd5-42f9-4df4-adfe-a1b905058606.png)
 	
 	
 
-	![image](https://user-images.githubusercontent.com/120044190/221270952-fae1df85-49d8-4007-81a9-3ce5abb0dd28.png)
+![image](https://user-images.githubusercontent.com/120044190/221270952-fae1df85-49d8-4007-81a9-3ce5abb0dd28.png)
 
  
 12. Create in MySQL a new admin user with username: myuser and password: password:
