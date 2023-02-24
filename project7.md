@@ -169,8 +169,9 @@ Important to note: In order for the NFS server to be accessible from your client
 3. Install mysql-server: `sudo apt install mysql-server -y`
 4. Create a database and name it tooling:
 
-	sudo mysql
-	create database tooling;
+	`sudo mysql`
+	`create database tooling;`
+	
 Create a database user and name it webaccess and grant permission to webaccess user on tooling database to do anything only from the webservers subnet cidr:
 -go to AWS to Webserver 1--->networking--->Subnet ID--->find IPv4 CIDR: 172.31.48.0/20
 
@@ -195,10 +196,15 @@ Create a database user and name it webaccess and grant permission to webaccess u
 3. Mount /var/www/ and target the NFS server’s export for apps (Use the private IP of the NFS server)
 
 	`sudo mkdir /var/www`
+	
 	`sudo mount -t nfs -o rw,nosuid 172.31.51.176:/mnt/apps /var/www`
-4. Verify that NFS was mounted successfully by running df -h. Make sure that the changes will persist on Web Server after reboot:	
+	
+4. Verify that NFS was mounted successfully by running df -h. Make sure that the changes will persist on Web Server after reboot:
+	
 	`sudo vi /etc/fstab`
+	
 add following line:
+	
 172.31.51.176:/mnt/apps /var/www nfs defaults 0 0
 
 5. INSTALL Remi’s repository, APACHE, and PHP---------Since I used RHEL 9, I had to update my system so I can run my commands properly. (Update for RHEL 9 https://techviewleo.com/enable-epel-remi-repos-rocky-linux/ )
@@ -248,7 +254,9 @@ CONTINUE with rest of install
 `sudo systemctl enable php-fpm`
 	
 `sudo setsebool -P httpd_execmem 1`
-	
+
+	![image](https://user-images.githubusercontent.com/120044190/221270277-d1630ff2-ee32-4de6-b4c8-7f68220244d6.png)
+
  
 6.	Verify that Apache files and directories are available on the Web Server in /var/www and also on the NFS server in /mnt/apps. If you see the same files – it means NFS is mounted correctly. You can try to create a new file touch test.txt from one server and check if the same file is accessible from other Web Servers.  
 
@@ -259,63 +267,102 @@ CONTINUE with rest of install
 `sudo mkdir /var/www`
 
 	`sudo mount -t nfs -o rw,nosuid 172.31.51.176:/mnt/logs /var/log/httpd`
+	
        	`sudo vi /etc/fstab`
+	
 	And enter:
+	
 	172.31.51.176:/mnt/logs /var/log/httpd nfs defaults 0 0
 
 
- 
+ ![image](https://user-images.githubusercontent.com/120044190/221270398-caa2416f-9d87-46a1-a0a1-cf61aeadac53.png)
 
 
 
 8.	Fork the tooling source code from Darey.io Github Account to your Github account. 
+	
 	 `sudo yum install git -y`
+	
 	 `git init`
+	
 	 `git clone https://github.com/darey-io/tooling.git`
+	
+	![image](https://user-images.githubusercontent.com/120044190/221270451-b5731dd5-c603-4991-9a6d-531155f3e402.png)
+
  
 9.	Deploy the tooling website’s code to the Webserver. Ensure that the html folder from the repository is deployed to /var/www/html
+	
 	`cd tooling`
+	
 	`ls`
+	
 	`ls /var/www`
-`sudo cp -R html/. /var/www/html`
-then `ls /var/www/html`
-`ls html`
+	
+	`sudo cp -R html/. /var/www/html`
+	
+	then `ls /var/www/html`
+	
+	`ls html`
+	
 Note 1: Open port 80 on webserver1--go to inbound rules in security group
 Note 2: If you encounter 403 Error – check permissions to your /var/www/html folder and also disable SELinux sudo setenforce 0
-To make this change permanent – open following config file sudo vi /etc/sysconfig/selinux and set SELINUX=disabledthen restrt httpd.
-Check to see it Apache running: sudo systemctl status httpd----if inactive cd .. and sudo setenforce 0
+To make this change permanent – open following config file `sudo vi /etc/sysconfig/selinux` and set SELINUX=disabledthen restrt httpd.
+	
+Check to see it Apache running: `sudo systemctl status httpd`----if inactive `cd ..` and `sudo setenforce 0`
+	
 THEN go to sudo vi /etc/sysconfig/selinux and set SELINUX=disabled then restart httpd---sudo systemctl start httpd
 
+![image](https://user-images.githubusercontent.com/120044190/221270673-bf060e09-93f1-48e8-a2a7-38ed03530dec.png)
 
  
 10.	Update the website’s configuration to connect to the database: `sudo vi /var/www/html/functions.php`
 
 ENTER $db = mysqli_connect('172.31.14.247', 'webaccess', 'password', 'tooling');
+	
+	![image](https://user-images.githubusercontent.com/120044190/221270738-471a54dd-60e0-48e0-ad1b-285575eb9a11.png)
+
  
 Apply tooling-db.sql script to your database using this command:
+	
  `mysql -h 172.31.14.247 -u webaccess -p tooling  < tooling-db.sql` 
+								   
 (if it doesnt work, you need to install mysql--->`sudo yum install mysql`)  
+	
 ----cd tooling and enter command again
 
 REMEMBER to go to inbound rules for DB server and add MYSQL/Aurora  TCP 3306 and subnet IPv4 172.31.48.0/20
 
 Go to database server and the bind address to 0.0.0.0 by entering: 
+		
 `sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf` THEN restart `sudo systemctl restart mysql`
 
 11.	Go back to DB server and run `sudo mysql` and `show databases`
 
-use tooling;
-show tables;
-select * from users;
+	use tooling;
+	
+	show tables;
+	
+	select * from users;
 
 To backup welcome page on Apache:  `sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.backup` THEN `sudo systemctl restart httpd`
  
+	![image](https://user-images.githubusercontent.com/120044190/221270925-8ecddfd5-42f9-4df4-adfe-a1b905058606.png)
+
+	![image](https://user-images.githubusercontent.com/120044190/221270952-fae1df85-49d8-4007-81a9-3ce5abb0dd28.png)
+
  
 12.	Create in MySQL a new admin user with username: myuser and password: password:
-INSERT INTO users(id, username, password, email, user_type, status)
-VALUES ("5", "myuser", "21232f297a57a5a743894a0e4a801fc3", "eunicedeola@gmail.com", "admin", "5");
+	
+	INSERT INTO users(id, username, password, email, user_type, status)
+	--> VALUES ("5", "myuser", "21232f297a57a5a743894a0e4a801fc3", "eunicedeola@gmail.com", "admin", "5");
 
 LOGIN with myuser and password is admin
+
+	![image](https://user-images.githubusercontent.com/120044190/221271057-71a11d21-23aa-4fa5-a8d6-68e5330b2887.png)
+
+	![image](https://user-images.githubusercontent.com/120044190/221271092-1515de4a-06a5-4d7d-98e3-ee8865ecf537.png)
+
+	![image](https://user-images.githubusercontent.com/120044190/221271111-cdf84306-aaa5-488b-a3d4-385c00804578.png)
 
  
 
