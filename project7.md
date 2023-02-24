@@ -27,13 +27,21 @@ Connect to NFS Server  using ssh connect info on terminal
 Run `lsblk`
 Run gdisk to create partitions  `sudo gdisk /dev/xvdf` (do for each volume) 
 	---creating new GPT entries
+	
 	---command: n (new partition)
+	
 	---partition number: 1
+	
 	---first sector: press enter
+	
 	---last sector: press enter
+	
 	---hex code: 8300
+	
 	---command: p (to view partition)
+	
 	---command: w (to save)
+	
 ----Repeat above steps for other remaining block devices--xvdg and xvdh
 
 Run `lsblk` again
@@ -47,6 +55,7 @@ Install lvm2 package by running command: `sudo yum install lvm2 -y` then run `su
 
  
 Create physical volume to be used by LVM by using pvcreate command:
+
 	`sudo pvcreate /dev/xvdf1 /dev/xvdg1 /dev/xvdh1`
 
 Check if the PV has been created successfully--Run: `sudo pvs`
@@ -107,7 +116,7 @@ Mount to /dev/webdata-vg/lv-apps /dev/webdata-vg/lv-logs and /dev/webdata-vg/lv-
  ![image](https://user-images.githubusercontent.com/120044190/221268043-cc6a9d6f-d883-4ba6-8c88-72ea96ac8fff.png)
 
 
-4. Install NFS server, configure it to start on reboot and make sure it is up and running
+4. Install NFS server, configure it to start on reboot and make sure it is up and running:
 
 	`sudo yum -y update`
 
