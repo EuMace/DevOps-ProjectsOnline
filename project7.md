@@ -10,9 +10,9 @@ The tools we want our team to be able to use are well known and widely used by m
 6.	Prometheus – An open-source monitoring system with a dimensional data model, flexible query language, efficient time series database and modern alerting 	 approach.
 7.	Kibana – Kibana is a free and open user interface that lets you visualize your Elasticsearch data and navigate the Elastic Stack.
 
-What we need for this project: 
+## What we need for this project: 
 •	Create 4 EC2 RHEL 8 instances for - 1 NFS, 3 webservers
-Named--NFS, webserver1, webserver2, webserver3
+	- Named--NFS, webserver1, webserver2, webserver3
 
 •	Create 1 EC2 Ubuntu 20.04 for DB--name DB
 
