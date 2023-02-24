@@ -108,11 +108,16 @@ Mount to /dev/webdata-vg/lv-apps /dev/webdata-vg/lv-logs and /dev/webdata-vg/lv-
 
 
 4. Install NFS server, configure it to start on reboot and make sure it is up and running
-`sudo yum -y update`
-`sudo yum install nfs-utils -y`
-`sudo systemctl start nfs-server.service`
-`sudo systemctl enable nfs-server.service`
-`sudo systemctl status nfs-server.service`
+
+	`sudo yum -y update`
+
+	`sudo yum install nfs-utils -y`
+	
+	`sudo systemctl start nfs-server.service`
+	
+	`sudo systemctl enable nfs-server.service`
+	
+	`sudo systemctl status nfs-server.service`
  
  ![image](https://user-images.githubusercontent.com/120044190/221268114-7197c821-460b-4937-8082-db97f227d88e.png)
 
