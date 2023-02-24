@@ -16,7 +16,7 @@ The tools we want our team to be able to use are well known and widely used by m
 
 •	Create 1 EC2 Ubuntu 20.04 for DB--name DB
 
-Step 1 – Prepare NFS Server
+## Step 1 – Prepare NFS Server
 1.	Spin up a new EC2 instance with RHEL Linux 8 OS.
 2.	Configure LVM on the server.
 •	Format the disks as xfs
