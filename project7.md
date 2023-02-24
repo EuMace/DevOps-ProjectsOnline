@@ -7,7 +7,7 @@ The tools we want our team to be able to use are well known and widely used by m
 3.	Jfrog Artifactory – Universal Repository Manager supporting all major packaging formats, build tools and CI servers. Artifactory.
 4.	Rancher – an open source software platform that enables organizations to run and manage Docker and Kubernetes in production.
 5.	Grafana – a multi-platform open source analytics and interactive visualization web application.
-6.	Prometheus – An open-source monitoring system with a dimensional data model, flexible query language, efficient time series database and modern alerting approach.
+6.	Prometheus – An open-source monitoring system with a dimensional data model, flexible query language, efficient time series database and modern alerting 	 approach.
 7.	Kibana – Kibana is a free and open user interface that lets you visualize your Elasticsearch data and navigate the Elastic Stack.
 
 What we need for this project: 
