@@ -330,6 +330,7 @@ CONTINUE with rest of install
 	`ls html`
 	
 Note 1: Open port 80 on webserver1--go to inbound rules in security group
+	
 Note 2: If you encounter 403 Error – check permissions to your /var/www/html folder and also disable SELinux sudo setenforce 0
 To make this change permanent – open following config file `sudo vi /etc/sysconfig/selinux` and set SELINUX=disabledthen restrt httpd.
 	
