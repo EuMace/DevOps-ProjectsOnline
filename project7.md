@@ -153,7 +153,7 @@ Esc + :wq!
 
 `sudo exportfs -arv`
  
-	![image](https://user-images.githubusercontent.com/120044190/221268463-021e0bc3-3bb9-463a-895c-68e828783f59.png)
+![image](https://user-images.githubusercontent.com/120044190/221268463-021e0bc3-3bb9-463a-895c-68e828783f59.png)
 	
 
 8. Check which port is used by NFS and open it using Security Groups (add new Inbound Rule)
@@ -161,8 +161,11 @@ Esc + :wq!
 	rpcinfo -p | grep nfs
 
 Important to note: In order for the NFS server to be accessible from your client, you must additionally open the following ports: TCP 111, UDP 111, UDP 2049, NFS 2049
+	
  
  ![image](https://user-images.githubusercontent.com/120044190/221268571-19fdf7ab-37ef-4661-be2c-43ad3dd470fc.png)
+	
+	
 	
  ![image](https://user-images.githubusercontent.com/120044190/221268813-c493e4b6-e214-4638-9b55-1309a85d9e45.png)
 
