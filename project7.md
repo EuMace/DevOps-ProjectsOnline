@@ -1,4 +1,5 @@
-DEVOPS TOOLING WEBSITE SOLUTION
+# DEVOPS TOOLING WEBSITE SOLUTION
+
 Introducing a set of DevOps tools that will help the team in day to day activities in managing, developing, testing, deploying and monitoring different projects.
 The tools we want our team to be able to use are well known and widely used by multiple DevOps teams, so we will introduce a single DevOps Tooling Solution that will consist of:
 1.	Jenkins – free and open source automation server used to build CI/CD pipelines.
