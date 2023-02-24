@@ -202,34 +202,53 @@ add following line:
 172.31.51.176:/mnt/apps /var/www nfs defaults 0 0
 
 5. INSTALL Remi’s repository, APACHE, and PHP---------Since I used RHEL 9, I had to update my system so I can run my commands properly. (Update for RHEL 9 https://techviewleo.com/enable-epel-remi-repos-rocky-linux/ )
+	
 > `sudo yum install httpd -y` (install Apache)
+	
 `sudo dnf update -y`
+	
 `sudo dnf upgrade --refresh -y`
 
 `sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms`
 `sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm`
+	
 `sudo dnf update`
+	
 `sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm`
+	
 `sudo yum repolist`
+	
 `sudo dnf --disablerepo="*" --enablerepo="remi" list available`
+	
 `sudo dnf --disablerepo="*" --enablerepo="remi-safe" list available` 
+	
 `sudo dnf module list php`
+	
 *****sudo dnf module install php:remi-8.1
 sudo dnf module enable php:remi-8.1 -y ( you can also enable other PHP modules: 8.0 or 7.4) To disable php remi-8.1. sudo dnf module disable  php:remi-8.1 -y
 
-To enable or disable a given remi repository permanently, we need to edit the /etc/yum.repos.d/remi.repo with the text editor. Scroll down through the file to the line labeled enabled=0.
+To enable or disable a given remi repository permanently, we need to edit the /etc/yum.repos.d/remi.repo with the text editor. Scroll down through the file to the
+	
+line labeled enabled=0.
+	
 The ‘0’ value denotes a given repository is disabled. Changing the value to ‘1’ enables a given repository.
+	
 `sudo vi /etc/yum.repos.d/remi.repo`
 
 `sudo dnf update` 
+	
 `sudo dnf repolist
 
 CONTINUE with rest of install
 
 `sudo dnf install php php-opcache php-gd php-curl php-mysqlnd`
+	
 `sudo systemctl start php-fpm`
+	
 `sudo systemctl enable php-fpm`
+	
 `sudo setsebool -P httpd_execmem 1`
+	
  
 6.	Verify that Apache files and directories are available on the Web Server in /var/www and also on the NFS server in /mnt/apps. If you see the same files – it means NFS is mounted correctly. You can try to create a new file touch test.txt from one server and check if the same file is accessible from other Web Servers.  
 
