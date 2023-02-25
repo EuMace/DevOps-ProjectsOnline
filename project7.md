@@ -289,7 +289,7 @@ CONTINUE with rest of install
 
 7. Locate the log folder for Apache on the Web Server and mount it to NFS server’s export for logs. Repeat step №3 and №4 to make sure the mount point will persist after reboot:
 
-`sudo mkdir /var/www`
+`sudo ls /var/log/httpd`
 
 	`sudo mount -t nfs -o rw,nosuid 172.31.51.176:/mnt/logs /var/log/httpd`
 	
