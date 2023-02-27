@@ -70,7 +70,7 @@ Make sure apache2 is up and running:
 
 4. Verify that our configuration works – try to access your LB’s public IP address or Public DNS name from your browser:
 
-http://<Load-Balancer-Public-IP-Address-or-Public-DNS-Name>/index.php 
+    http://'Load-Balancer-Public-IP-Address-or-Public-DNS-Name'/index.php 
  
  ![image](https://user-images.githubusercontent.com/120044190/221658248-e2dc4004-2a50-4bf1-98e1-ecd3bf640b68.png)
 
