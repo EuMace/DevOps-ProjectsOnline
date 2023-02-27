@@ -46,11 +46,11 @@ Make sure apache2 is up and running:
 
 ## Configure load balancing
 
-sudo vi /etc/apache2/sites-available/000-default.conf
+`sudo vi /etc/apache2/sites-available/000-default.conf`
 
-#Add this configuration into this section <VirtualHost *:80>  </VirtualHost>
+> #Add this configuration into this section <VirtualHost *:80>  </VirtualHost>
 
-<Proxy "balancer://mycluster">
+> <Proxy "balancer://mycluster">
 
                BalancerMember http://<WebServer1-Private-IP-Address>:80 loadfactor=5 timeout=1
                
