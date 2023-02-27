@@ -87,11 +87,7 @@ Open two ssh/Putty consoles for both Web Servers and run following command:
  ![image](https://user-images.githubusercontent.com/120044190/221658362-ab20f56c-9755-4615-9a67-820d945a52f2.png)
 
  
-Try to refresh your browser page http://<Load-Balancer-Public-IP-Address-or-Public-DNS-Name>/index.php several times and make sure that both servers receive HTTP GET
-
-requests from your LB – new records must appear in each server’s log file. The number of requests to each server will be approximately the same since we set 
- 
-loadfactor to the same value for both servers – it means that traffic will be disctributed evenly between them.
+Try to refresh your browser page http://<Load-Balancer-Public-IP-Address-or-Public-DNS-Name>/index.php several times and make sure that both servers receive HTTP GET requests from your LB – new records must appear in each server’s log file. The number of requests to each server will be approximately the same since we set loadfactor to the same value for both servers – it means that traffic will be distributed evenly between them.
 
 If you have configured everything correctly – your users will not even notice that their requests are served by more than one server.
 
