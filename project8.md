@@ -94,10 +94,8 @@ If you have configured everything correctly – your users will not even notice 
 # Optional Step – Configure Local DNS Names Resolution
  
 Sometimes it is tedious to remember and switch between IP addresses, especially if you have a lot of servers under your management.
- 
-What we can do, is to configure the local domain name resolution. The easiest way is to use /etc/hosts file, although this approach is not very scalable, but it is 
- 
-very easy to configure and shows the concept very well. We will configure the IP address to domain name mapping for our LB.
+What we can do, is to configure local domain name resolution. The easiest way is to use /etc/hosts file, although this approach is not very scalable, but it is very easy to configure and shows the concept well. So let us configure IP address to domain name mapping for our LB.
+
  
 #Open this file on your LB server
 
