@@ -104,6 +104,7 @@ What we can do, is to configure local domain name resolution. The easiest way is
 #Add 2 records into this file with Local IP address and arbitrary name for both of your Web Servers
 
 172.31.57.48  Web1
+ 
 172.31.56.24 Web2
 
 
@@ -120,10 +121,8 @@ You can try to curl your Web Servers from LB locally `curl http://Web1` or `curl
 
 ![image](https://user-images.githubusercontent.com/120044190/221658487-4c4bbe01-130d-4625-bc64-60be60bbe6f3.png)
  
- 
-As a reminder, this is only an internal configuration and it is also local to your LB server, these names will neither be ‘resolvable’ from other servers internally 
- 
-nor from the Internet.
+As a reminder, this is only an internal configuration and it is also local to your LB server, these names will neither be ‘resolvable’ from other servers internally nor from the Internet.
+
 
 # Targed Architecture
  
