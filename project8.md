@@ -111,6 +111,7 @@ What we can do, is to configure local domain name resolution. The easiest way is
 Now you can update your LB config file with those names instead of IP addresses.
  
 > BalancerMember http://Web1:80 loadfactor=5 timeout=1
+ 
 > BalancerMember http://Web2:80 loadfactor=5 timeout=1
 
 ![image](https://user-images.githubusercontent.com/120044190/221658436-9e5a0ea2-14da-4a53-b0f8-485926375022.png)
